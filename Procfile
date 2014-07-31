@@ -1,0 +1,1 @@
+web: gunicorn WakePlay:app --log-file=-
