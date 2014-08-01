@@ -54,7 +54,7 @@ def play():
     Add logic here for the pandora redirects based on sleep state.
     """
     ray = data.users['cMqObMnzHc8']['state']
-    cc = data.users['CC']['state']
+    cc = data.users['_4HFHlzLlLk']['state']
     if ray == 'asleep':
         if cc == 'asleep':
             # Beethoven
