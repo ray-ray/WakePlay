@@ -16,9 +16,13 @@ def hello_world():
 @app.route('/wakeup', methods=['GET', 'POST'])
 def wakeup():
     if request.method == 'POST':
-        payload = request.get_json()
-        print payload
-        return json.dumps(payload)
+        notification = request.get_json()
+        for event in notification['events']:
+            if event['action'] == 'enter_sleep_mode':
+                data.users[event['user_xid']]['state'] = 'asleep'
+            elif event['action'] == 'exit_sleep_mode':
+                data.users[event['user_xid']]['state'] = 'awake'
+        return 'OK  '
     else:
         return "Here's the pubsub!"
 
