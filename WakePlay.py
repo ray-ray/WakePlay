@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request, redirect
+from flask import request, redirect, url_for
 
 
 import data
@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return 'Hello World!'
+    return redirect(url_for('play'))
 
 
 @app.route('/wakeup', methods=['GET', 'POST'])
@@ -69,5 +69,5 @@ def play():
 
 
 if __name__ == '__main__':
-    app.debug = True
+    #app.debug = True
     app.run()
