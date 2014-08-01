@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import request
+from flask import request, redirect
 
 
 import data
@@ -49,7 +49,25 @@ def play():
     """
     Add logic here for the pandora redirects based on sleep state.
     """
-    return 'Not done yet'
+    ray = data.users['cMqObMnzHc8']['state']
+    cc = data.users['CC']['state']
+    if ray == 'asleep':
+        if cc == 'asleep':
+            # Beethoven
+            pandora = '1169658884822668878'
+        else:
+            # Eminem
+            pandora = '1259585986648348238'
+    else:
+        if cc == 'asleep':
+            # Daft Punk
+            pandora = '547282037317047886'
+        else:
+            # Girl Talk
+            pandora = '846091875696514638'
+    return redirect('pandorav2:/createStation?stationId=%s' % pandora, code = 303)
+
 
 if __name__ == '__main__':
+    app.debug = True
     app.run()
